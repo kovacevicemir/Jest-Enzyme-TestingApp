@@ -18,7 +18,14 @@ it("has a text area and a button", () => {
 });
 
 it("has a text area that users can type in", () => {
+    //Find text area and simulate new value input
     wrapped.find('textarea').simulate('change',{
         target:{value:'new comment'}
     });
+
+    //force component to update (setState)
+    wrapped.update();
+
+    //check if updated value is correct
+    expect(wrapped.find("textarea").prop("value")).toEqual("new comment")
 });
